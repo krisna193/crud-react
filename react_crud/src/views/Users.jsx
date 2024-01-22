@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axiosClient from '../axios-client';
 import { Link } from 'react-router-dom';
+import { useStateContext } from '../contexts/ContextProvider';
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false)
+  const {setNotification} = useStateContext()
 
   useEffect(() => {
     getUsers();
   }, [])
 
   const onDelete = (u) => {
-    if (window.confirm("anda yakin ingin menghapus foto ini?")){
+    if (!window.confirm("anda yakin ingin menghapus user ini?")){
 
       return
     }
     axiosClient.delete(`/users/${u.id}`)
     .then(() => {
+      setNotification("User berhasil Dihapus")
       getUsers()
     })
 
@@ -53,7 +56,7 @@ export default function Users() {
               <th>Action</th>
             </tr>
           </thead>
-          { loading &&<tbody>
+          { loading && <tbody>
             <tr>
               <td colSpan="5" className="text-center">
                   loading...
@@ -61,7 +64,8 @@ export default function Users() {
             </tr>
           </tbody>
           }
-          <tbody>
+            {!loading &&
+            <tbody>
             {users.map(u => (
                <tr>
                <td>{u.id}</td>
@@ -74,9 +78,9 @@ export default function Users() {
                  <button onClick={ev => onDelete(u)} className='btn-delete'>Delete</button>
                </td>
              </tr>
-            )
-              )}
+            ))}
           </tbody>
+          }
         </table>
       </div>
     </div>

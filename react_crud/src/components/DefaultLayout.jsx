@@ -4,7 +4,7 @@ import { useStateContext } from '../contexts/ContextProvider';
 import Dashboard from './../views/Dashboard';
 import axiosClient from '../axios-client';
 
-export default function DefaultLayout() {
+export default function DefaultLayoutubyb() {
   const {user, token, notification, setUser, setToken} = useStateContext()
 
   if(!token){
@@ -35,6 +35,7 @@ export default function DefaultLayout() {
       <aside>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/users">Users</Link>
+        <Link to="/foto">Foto</Link>
       </aside>
       <div className='content'>
       <header>

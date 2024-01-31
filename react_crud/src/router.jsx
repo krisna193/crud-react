@@ -5,8 +5,10 @@ import NotFound from "./views/NotFound.jsx";
 import DefaultLayout from "./components/DefaultLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
 import Dashboard from "./views/Dashboard.jsx";
-import Users from "./views/Users.jsx";
+import Users from "./views/Users";
 import UserForm from "./views/UserForm.jsx";
+import Foto from "./views/Fotos.jsx";
+import FotoForm from "./views/FotoForm.jsx";
 
 
 const router = createBrowserRouter([
@@ -31,9 +33,21 @@ const router = createBrowserRouter([
             element: <UserForm key="userUpdate"/>
         },
         {
+            path: '/foto/new',
+            element: <FotoForm key="fotoCreate"/>
+        },
+        {
+            path: '/foto/:id',
+            element: <FotoForm key="fotoUpdate"/>
+        },
+        {
             path: '/dashboard',
             element: <Dashboard/>
         },
+        {
+            path: '/foto',
+            element: <Foto/>
+        }
 ]
 },
 {
